@@ -1,0 +1,1353 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>探索生命意義 | 啟發課程 Alpha Course</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght=300;400;500;700;900&family=Playfair+Display:ital,wght=0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        alphaRed: {
+                            50: '#FFF1F2',
+                            100: '#FFE4E6',
+                            500: '#F43F5E',
+                            600: '#E11D48',
+                            700: '#BE123C',
+                            800: '#9F1239',
+                        },
+                        alphaWarm: {
+                            50: '#FDFBF7',
+                            100: '#F7F4EB',
+                            200: '#EFEAD8',
+                            900: '#1E1B18',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Noto Sans TC', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #F1F1F1;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #C1C1C1;
+            border-radius: 3px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #A8A8A8;
+        }
+    </style>
+</head>
+<body class="bg-alphaWarm-50 text-slate-800 font-sans selection:bg-alphaRed-100 selection:text-alphaRed-700 antialiased overflow-x-hidden">
+
+    <!-- 導覽列 -->
+    <nav class="sticky top-0 z-40 bg-alphaWarm-50/95 backdrop-blur-md border-b border-alphaWarm-200/50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 sm:h-20">
+                <div class="flex items-center space-x-3">
+                    <!-- Alpha Logo SVG (修正為正向經典問號) -->
+                    <svg class="w-8 h-8 sm:w-10 sm:h-10 text-alphaRed-600" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="50" r="45" stroke="currentColor" stroke-width="8" />
+                        <!-- 問號曲線修正：起點在左，圓弧往右上，折回中下 -->
+                        <path d="M38 38 C38 28, 50 22, 60 30 C68 38, 50 48, 50 58" stroke="currentColor" stroke-width="8" stroke-linecap="round" />
+                        <circle cx="50" cy="74" r="5" fill="currentColor" />
+                    </svg>
+                    <div>
+                        <span class="font-serif text-xl sm:text-2xl font-bold tracking-wider text-slate-900">Alpha</span>
+                        <span class="text-xs sm:text-sm block text-slate-500 tracking-widest font-light -mt-1">啟發課程</span>
+                    </div>
+                </div>
+                
+                <!-- 桌面版選單 -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#about" class="text-slate-600 hover:text-alphaRed-600 font-medium transition-colors">什麼是啟發？</a>
+                    <a href="#elements" class="text-slate-600 hover:text-alphaRed-600 font-medium transition-colors">三大核心</a>
+                    <a href="#curriculum" class="text-slate-600 hover:text-alphaRed-600 font-medium transition-colors">11週大綱</a>
+                    <a href="#quiz" class="text-slate-600 hover:text-alphaRed-600 font-medium transition-colors">生命探索測試</a>
+                    <a href="#faq" class="text-slate-600 hover:text-alphaRed-600 font-medium transition-colors">常見問題</a>
+                </div>
+
+                <div class="hidden md:block">
+                    <a href="#register" class="inline-flex items-center justify-center px-5 py-2.5 rounded-full text-white bg-alphaRed-600 hover:bg-alphaRed-700 font-medium tracking-wide shadow-lg shadow-alphaRed-600/20 hover:shadow-alphaRed-600/30 transition-all transform hover:-translate-y-0.5 active:translate-y-0">
+                        立即免費報名
+                    </a>
+                </div>
+
+                <!-- 行動版選單按鈕 -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="p-2 rounded-lg text-slate-600 hover:text-alphaRed-600 focus:outline-none transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path id="menu-icon-open" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                            <path id="menu-icon-close" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 行動版下拉選單 -->
+        <div id="mobile-menu" class="hidden md:hidden border-t border-alphaWarm-200/50 bg-alphaWarm-50 px-4 pt-2 pb-6 space-y-3 shadow-inner">
+            <a href="#about" class="block px-3 py-2.5 rounded-lg text-base font-medium text-slate-700 hover:bg-alphaWarm-100 hover:text-alphaRed-600 transition-colors">什麼是啟發？</a>
+            <a href="#elements" class="block px-3 py-2.5 rounded-lg text-base font-medium text-slate-700 hover:bg-alphaWarm-100 hover:text-alphaRed-600 transition-colors">三大核心</a>
+            <a href="#curriculum" class="block px-3 py-2.5 rounded-lg text-base font-medium text-slate-700 hover:bg-alphaWarm-100 hover:text-alphaRed-600 transition-colors">11週大綱</a>
+            <a href="#quiz" class="block px-3 py-2.5 rounded-lg text-base font-medium text-slate-700 hover:bg-alphaWarm-100 hover:text-alphaRed-600 transition-colors">生命探索測試</a>
+            <a href="#faq" class="block px-3 py-2.5 rounded-lg text-base font-medium text-slate-700 hover:bg-alphaWarm-100 hover:text-alphaRed-600 transition-colors">常見問題</a>
+            <a href="#register" class="block w-full text-center px-4 py-3 rounded-xl text-white bg-alphaRed-600 hover:bg-alphaRed-700 font-medium shadow-md transition-colors">立即免費報名</a>
+        </div>
+    </nav>
+
+    <!-- 英雄區 (Hero Section) -->
+    <header class="relative overflow-hidden pt-12 pb-20 sm:pb-28 lg:pt-20 lg:pb-36 bg-gradient-to-b from-alphaWarm-100 to-alphaWarm-50">
+        <!-- 背景裝飾 -->
+        <div class="absolute inset-0 opacity-40 pointer-events-none">
+            <svg class="absolute top-0 right-0 w-[500px] h-[500px] text-alphaWarm-200/40 transform translate-x-1/3 -translate-y-1/4" viewBox="0 0 100 100" fill="currentColor">
+                <circle cx="50" cy="50" r="40" />
+            </svg>
+            <svg class="absolute bottom-0 left-0 w-[300px] h-[300px] text-alphaWarm-200/30 transform -translate-x-1/4 translate-y-1/4" viewBox="0 0 100 100" fill="currentColor">
+                <circle cx="50" cy="50" r="50" />
+            </svg>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+                <!-- 英雄區 left -->
+                <div class="lg:col-span-7 text-center lg:text-left space-y-6 sm:space-y-8">
+                    <span class="inline-flex items-center px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold tracking-wider text-alphaRed-700 bg-alphaRed-50 border border-alphaRed-100 uppercase">
+                        🌍 全球超過 2,700 萬人曾經參與的探索旅程
+                    </span>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-tight sm:leading-none">
+                        人生，<br class="sm:hidden">難道就只是這樣嗎？
+                    </h1>
+                    <p class="max-w-xl mx-auto lg:mx-0 text-base sm:text-lg lg:text-xl text-slate-600 leading-relaxed font-light">
+                        每個人都有疑問。關於生命、信仰、意義、未來。啟發課程提供一個溫馨、無壓力的輕鬆空間，讓任何人都可以前來暢談、發問，並與志同道合的朋友一起探索生命的真諦。
+                    </p>
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                        <a href="#register" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-full text-white bg-alphaRed-600 hover:bg-alphaRed-700 text-lg font-medium tracking-wide shadow-xl shadow-alphaRed-600/30 hover:shadow-alphaRed-700/40 hover:scale-[1.02] active:scale-100 transition-all duration-200">
+                            免費加入下一期
+                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </a>
+                        <a href="#about" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-full text-slate-700 bg-white hover:bg-slate-50 text-lg font-medium tracking-wide border border-slate-200 shadow-sm hover:shadow transition-all duration-200">
+                            了解更多
+                        </a>
+                    </div>
+                    
+                    <!-- 快速特色標籤 -->
+                    <div class="pt-4 grid grid-cols-3 gap-2 max-w-md mx-auto lg:mx-0 border-t border-slate-200/60 text-center">
+                        <div>
+                            <p class="text-2xl sm:text-3xl font-bold text-slate-950 font-serif">100%</p>
+                            <p class="text-xs sm:text-sm text-slate-500 font-light mt-0.5">完全免費</p>
+                        </div>
+                        <div class="border-x border-slate-200">
+                            <p class="text-2xl sm:text-3xl font-bold text-slate-950 font-serif">11週</p>
+                            <p class="text-xs sm:text-sm text-slate-500 font-light mt-0.5">深度探索</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl sm:text-3xl font-bold text-slate-950 font-serif">0</p>
+                            <p class="text-xs sm:text-sm text-slate-500 font-light mt-0.5">無壓力承諾</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 英雄區 right -->
+                <div class="lg:col-span-5 flex justify-center items-center">
+                    <div class="relative w-full max-w-md aspect-square bg-white rounded-[2rem] shadow-2xl p-6 sm:p-8 flex flex-col justify-between border border-alphaWarm-200">
+                        <div class="flex justify-between items-start">
+                            <div class="space-y-1">
+                                <span class="text-xs font-semibold text-alphaRed-600 tracking-wider uppercase">Alpha Table</span>
+                                <h3 class="text-lg sm:text-xl font-bold text-slate-900">啟發的小桌日常</h3>
+                            </div>
+                            <span class="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-semibold">
+                                開放報名中
+                            </span>
+                        </div>
+                        
+                        <!-- 意象插圖 (SVG 展示溫暖的交流與對話) -->
+                        <div class="my-6 flex justify-center items-center h-48 bg-alphaWarm-100 rounded-2xl overflow-hidden relative border border-alphaWarm-200/50">
+                            <div class="absolute w-24 h-24 bg-amber-200/50 rounded-full blur-2xl top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
+                            
+                            <svg class="w-40 h-40 relative z-10 text-slate-700" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="80" cy="110" r="30" fill="#E2E8F0" />
+                                <ellipse cx="80" cy="115" rx="20" ry="10" fill="#CBD5E1" />
+                                <rect x="70" y="85" width="20" height="25" rx="4" fill="#F43F5E" />
+                                <path d="M90 92 C96 92, 96 102, 90 102" stroke="#F43F5E" stroke-width="3" stroke-linecap="round" />
+                                <path d="M74 75 Q78 70, 74 65" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" />
+                                <path d="M80 73 Q84 68, 80 63" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" />
+                                <path d="M86 75 Q90 70, 86 65" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" />
+                                <rect x="15" y="25" width="45" height="30" rx="10" fill="white" class="shadow-sm" />
+                                <path d="M50 55 L45 62 L42 55" fill="white" />
+                                <circle cx="30" cy="40" r="2" fill="#94A3B8" />
+                                <circle cx="37.5" cy="40" r="2" fill="#94A3B8" />
+                                <circle cx="45" cy="40" r="2" fill="#94A3B8" />
+
+                                <rect x="95" y="30" width="50" height="32" rx="10" fill="#F43F5E" />
+                                <path d="M105 62 L110 68 L113 62" fill="#F43F5E" />
+                                <path d="M107 46 L133 46" stroke="white" stroke-width="2.5" stroke-linecap="round" />
+                                <path d="M112 51 L128 51" stroke="white" stroke-width="2.5" stroke-linecap="round" />
+                            </svg>
+                        </div>
+
+                        <div class="space-y-3">
+                            <div class="flex items-center space-x-2 text-sm text-slate-600">
+                                <span class="flex-shrink-0 w-2 h-2 rounded-full bg-alphaRed-600"></span>
+                                <span>「在這裡，任何人都可以詢問任何問題。」</span>
+                            </div>
+                            <div class="flex items-center justify-between text-xs text-slate-400 pt-2 border-t border-slate-100">
+                                <span>下一期開課時間：近期開課</span>
+                                <span>每週聚會 2 小時</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 關於啟發 (About Section) -->
+    <section id="about" class="py-20 sm:py-28 bg-white border-y border-alphaWarm-200/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mx-auto text-center space-y-4 mb-16">
+                <h2 class="text-xs font-bold tracking-widest text-alphaRed-600 uppercase">What is Alpha?</h2>
+                <p class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">探索信仰，不帶任何壓力</p>
+                <div class="w-12 h-1 bg-alphaRed-500 mx-auto rounded"></div>
+                <p class="text-lg text-slate-600 font-light max-w-2xl mx-auto pt-2">
+                    啟發課程是一系列探索基督信仰的聚會。每堂聚會都會探討一個關於信仰與生命的不同問題，旨在引發深入、真誠的討論。
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-alphaWarm-50 rounded-2xl p-8 border border-alphaWarm-200/40 hover:border-alphaRed-500/20 hover:shadow-xl transition-all duration-300">
+                    <div class="w-12 h-12 rounded-xl bg-alphaRed-50 flex items-center justify-center text-alphaRed-600 mb-6">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-950 mb-3">完全免費，零負擔</h3>
+                    <p class="text-slate-600 font-light leading-relaxed">
+                        我們誠摯歡迎任何人參與，全程不收任何費用，更沒有後續推銷或勉強你加入特定宗教團體的隱藏承諾。
+                    </p>
+                </div>
+
+                <div class="bg-alphaWarm-50 rounded-2xl p-8 border border-alphaWarm-200/40 hover:border-alphaRed-500/20 hover:shadow-xl transition-all duration-300">
+                    <div class="w-12 h-12 rounded-xl bg-alphaRed-50 flex items-center justify-center text-alphaRed-600 mb-6">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-950 mb-3">暢所欲言，無評判</h3>
+                    <p class="text-slate-600 font-light leading-relaxed">
+                        你可以提出任何尖銳或懷疑的問題。在啟發，沒有人會訓斥你、評判你或指正你的觀點，一切以彼此尊重為基礎。
+                    </p>
+                </div>
+
+                <div class="bg-alphaWarm-50 rounded-2xl p-8 border border-alphaWarm-200/40 hover:border-alphaRed-500/20 hover:shadow-xl transition-all duration-300 md:col-span-2 lg:col-span-1">
+                    <div class="w-12 h-12 rounded-xl bg-alphaRed-50 flex items-center justify-center text-alphaRed-600 mb-6">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-950 mb-3">輕鬆結交真摯友誼</h3>
+                    <p class="text-slate-600 font-light leading-relaxed">
+                        不論你的背景、信仰或職業為何，你都能在美味佳餚與真誠的深度互動中，收穫一群願意傾聽、陪伴與交流的好朋友。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 三大核心元素 (Core Elements Section) -->
+    <section id="elements" class="py-20 sm:py-28 bg-alphaWarm-100/60 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="max-w-3xl mx-auto text-center space-y-4 mb-16">
+                <h2 class="text-xs font-bold tracking-widest text-alphaRed-600 uppercase">The Three Elements</h2>
+                <p class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">每次聚會的三個美好體驗</p>
+                <div class="w-12 h-1 bg-alphaRed-500 mx-auto rounded"></div>
+                <p class="text-lg text-slate-600 font-light max-w-2xl mx-auto pt-2">
+                    不論是實體或線上，啟發聚會的時間約在 1.5 到 2 小時之間，由三個核心環節緊密結合而成：
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- 美食 Food -->
+                <div class="bg-white rounded-3xl p-8 sm:p-10 shadow-lg border border-alphaWarm-200/50 flex flex-col justify-between group hover:scale-[1.01] transition-all duration-300">
+                    <div class="space-y-6">
+                        <div class="w-14 h-14 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center group-hover:bg-amber-100 transition-colors">
+                            <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M14 12a2 2 0 11-4 0 2 2 0 014 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 2v20M2 12h20" />
+                            </svg>
+                        </div>
+                        <div class="space-y-3">
+                            <span class="text-xs font-semibold tracking-wider text-amber-600 uppercase">1. 美食與咖啡 / Food</span>
+                            <h3 class="text-2xl font-black text-slate-900">以輕鬆吃喝，拉近距離</h3>
+                            <p class="text-slate-600 font-light leading-relaxed">
+                                聚會總是從共享餐點或精緻茶點、香醇咖啡開始。沒有尷尬的破冰，只有如同與家人好友聚餐般的溫馨氣氛，讓一整天的緊繃感一掃而空。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="pt-8 border-t border-slate-100 mt-8 text-xs text-slate-400">
+                        * 線上啟發聚會將改為輕鬆趣味的線上互動與喝茶交流。
+                    </div>
+                </div>
+
+                <!-- 短講 Talk -->
+                <div class="bg-white rounded-3xl p-8 sm:p-10 shadow-lg border border-alphaWarm-200/50 flex flex-col justify-between group hover:scale-[1.01] transition-all duration-300">
+                    <div class="space-y-6">
+                        <div class="w-14 h-14 rounded-2xl bg-rose-50 text-rose-600 flex items-center justify-center group-hover:bg-rose-100 transition-colors">
+                            <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <div class="space-y-3">
+                            <span class="text-xs font-semibold tracking-wider text-rose-600 uppercase">2. 影片短講 / Talk</span>
+                            <h3 class="text-2xl font-black text-slate-900">啟迪人心，引導思考</h3>
+                            <p class="text-slate-600 font-light leading-relaxed">
+                                我們將一同觀看長約 25 分鐘、高質感製作的《華人啟發影片》。內容以趣味且多元的視角，探討關於信仰與生命的重大提問，藉此點燃思考與共鳴。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="pt-8 border-t border-slate-100 mt-8 text-xs text-slate-400">
+                        * 課程涵蓋：歷史考古、科學理性與生活經驗等多元視角。
+                    </div>
+                </div>
+
+                <!-- 討論 Discussion -->
+                <div class="bg-white rounded-3xl p-8 sm:p-10 shadow-lg border border-alphaWarm-200/50 flex flex-col justify-between group hover:scale-[1.01] transition-all duration-300">
+                    <div class="space-y-6">
+                        <div class="w-14 h-14 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center group-hover:bg-indigo-100 transition-colors">
+                            <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
+                            </svg>
+                        </div>
+                        <div class="space-y-3">
+                            <span class="text-xs font-semibold tracking-wider text-indigo-600 uppercase">3. 小組討論 / Discussion</span>
+                            <h3 class="text-2xl font-black text-slate-900">暢所欲言，彼此傾聽</h3>
+                            <p class="text-slate-600 font-light leading-relaxed">
+                                這是最精彩、最好玩的部分。你可以分享自己的見解、表達強烈反對、甚至坦白自己的疑惑。你可以暢所欲言，或是選擇全程只聽不說，全然自由。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="pt-8 border-t border-slate-100 mt-8 text-xs text-slate-400">
+                        * 在這裡，每種聲音都無比珍貴，也會得到完全的保護與尊重。
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 11週課程大綱 (Curriculum Section) -->
+    <section id="curriculum" class="py-20 sm:py-28 bg-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mx-auto text-center space-y-4 mb-16">
+                <h2 class="text-xs font-bold tracking-widest text-alphaRed-600 uppercase">Curriculum Overview</h2>
+                <p class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">11 週生命探索之旅</p>
+                <div class="w-12 h-1 bg-alphaRed-500 mx-auto rounded"></div>
+                <p class="text-lg text-slate-600 font-light max-w-2xl mx-auto pt-2">
+                    點擊下方各週次主題，深入了解我們每週將一起探討的精彩內容。
+                </p>
+            </div>
+
+            <!-- 動態大綱展示 -->
+            <div class="grid lg:grid-cols-12 gap-8 items-start">
+                <!-- 左側週次切換按鈕 (滾動容器) -->
+                <div class="lg:col-span-5 space-y-2 max-h-[550px] overflow-y-auto pr-2 custom-scrollbar">
+                    <!-- Week 1 -->
+                    <button onclick="switchWeek(1)" id="week-btn-1" class="week-btn w-full text-left p-4 rounded-xl border border-alphaRed-100 bg-alphaRed-50 text-alphaRed-700 font-semibold shadow-sm transition-all flex items-center justify-between">
+                        <span class="flex items-center space-x-3">
+                            <span class="w-8 h-8 rounded-full bg-alphaRed-600 text-white flex items-center justify-center text-sm font-bold">01</span>
+                            <span class="text-base">人生就是如此嗎？</span>
+                        </span>
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
+                    </button>
+                    <!-- Week 2 -->
+                    <button onclick="switchWeek(2)" id="week-btn-2" class="week-btn w-full text-left p-4 rounded-xl border border-slate-100 bg-slate-50 text-slate-700 hover:bg-alphaWarm-100 font-medium transition-all flex items-center justify-between">
+                        <span class="flex items-center space-x-3">
+                            <span class="w-8 h-8 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center text-sm font-bold">02</span>
+                            <span class="text-base">耶穌是誰？</span>
+                        </span>
+                        <svg class="w-5 h-5 opacity-40" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
+                    </button>
+                    <!-- Week 3 -->
+                    <button onclick="switchWeek(3)" id="week-btn-3" class="week-btn w-full text-left p-4 rounded-xl border border-slate-100 bg-slate-50 text-slate-700 hover:bg-alphaWarm-100 font-medium transition-all flex items-center justify-between">
+                        <span class="flex items-center space-x-3">
+                            <span class="w-8 h-8 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center text-sm font-bold">03</span>
+                            <span class="text-base">耶穌為何而死？</span>
+                        </span>
+                        <svg class="w-5 h-5 opacity-40" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
+                    </button>
+                    <!-- Week 4 -->
+                    <button onclick="switchWeek(4)" id="week-btn-4" class="week-btn w-full text-left p-4 rounded-xl border border-slate-100 bg-slate-50 text-slate-700 hover:bg-alphaWarm-100 font-medium transition-all flex items-center justify-between">
+                        <span class="flex items-center space-x-3">
+                            <span class="w-8 h-8 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center text-sm font-bold">04</span>
+                            <span class="text-base">如何得著信心？</span>
+                        </span>
+                        <svg class="w-5 h-5 opacity-40" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
+                    </button>
+                    <!-- Week 5 -->
+                    <button onclick="switchWeek(5)" id="week-btn-5" class="week-btn w-full text-left p-4 rounded-xl border border-slate-100 bg-slate-50 text-slate-700 hover:bg-alphaWarm-100 font-medium transition-all flex items-center justify-between">
+                        <span class="flex items-center space-x-3">
+                            <span class="w-8 h-8 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center text-sm font-bold">05</span>
+                            <span class="text-base">為什麼禱告？怎樣禱告？</span>
+                        </span>
+                        <svg class="w-5 h-5 opacity-40" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
+                    </button>
+                    <!-- Week 6 -->
+                    <button onclick="switchWeek(6)" id="week-btn-6" class="week-btn w-full text-left p-4 rounded-xl border border-slate-100 bg-slate-50 text-slate-700 hover:bg-alphaWarm-100 font-medium transition-all flex items-center justify-between">
+                        <span class="flex items-center space-x-3">
+                            <span class="w-8 h-8 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center text-sm font-bold">06</span>
+                            <span class="text-base">為什麼讀聖經？怎樣讀？</span>
+                        </span>
+                        <svg class="w-5 h-5 opacity-40" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
+                    </button>
+                    <!-- Week 7 -->
+                    <button onclick="switchWeek(7)" id="week-btn-7" class="week-btn w-full text-left p-4 rounded-xl border border-slate-100 bg-slate-50 text-slate-700 hover:bg-alphaWarm-100 font-medium transition-all flex items-center justify-between">
+                        <span class="flex items-center space-x-3">
+                            <span class="w-8 h-8 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center text-sm font-bold">07</span>
+                            <span class="text-base">上帝如何指引我們？</span>
+                        </span>
+                        <svg class="w-5 h-5 opacity-40" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
+                    </button>
+                    <!-- Holy Spirit Weekend -->
+                    <button onclick="switchWeek(8)" id="week-btn-8" class="week-btn w-full text-left p-4 rounded-xl border border-slate-100 bg-slate-50 text-slate-700 hover:bg-alphaWarm-100 font-medium transition-all flex items-center justify-between">
+                        <span class="flex items-center space-x-3">
+                            <span class="w-8 h-8 rounded-full bg-amber-200 text-amber-800 flex items-center justify-center text-sm font-bold">营</span>
+                            <span class="text-base font-semibold text-amber-800">特別週末：聖靈專題</span>
+                        </span>
+                        <svg class="w-5 h-5 opacity-60 text-amber-600" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
+                    </button>
+                    <!-- Week 9 -->
+                    <button onclick="switchWeek(9)" id="week-btn-9" class="week-btn w-full text-left p-4 rounded-xl border border-slate-100 bg-slate-50 text-slate-700 hover:bg-alphaWarm-100 font-medium transition-all flex items-center justify-between">
+                        <span class="flex items-center space-x-3">
+                            <span class="w-8 h-8 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center text-sm font-bold">08</span>
+                            <span class="text-base">如何抵擋邪惡？</span>
+                        </span>
+                        <svg class="w-5 h-5 opacity-40" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
+                    </button>
+                    <!-- Week 10 -->
+                    <button onclick="switchWeek(10)" id="week-btn-10" class="week-btn w-full text-left p-4 rounded-xl border border-slate-100 bg-slate-50 text-slate-700 hover:bg-alphaWarm-100 font-medium transition-all flex items-center justify-between">
+                        <span class="flex items-center space-x-3">
+                            <span class="w-8 h-8 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center text-sm font-bold">09</span>
+                            <span class="text-base">為什麼傳福音？怎樣傳？</span>
+                        </span>
+                        <svg class="w-5 h-5 opacity-40" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
+                    </button>
+                    <!-- Week 11 -->
+                    <button onclick="switchWeek(11)" id="week-btn-11" class="week-btn w-full text-left p-4 rounded-xl border border-slate-100 bg-slate-50 text-slate-700 hover:bg-alphaWarm-100 font-medium transition-all flex items-center justify-between">
+                        <span class="flex items-center space-x-3">
+                            <span class="w-8 h-8 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center text-sm font-bold">10</span>
+                            <span class="text-base">上帝今天還醫治人嗎？</span>
+                        </span>
+                        <svg class="w-5 h-5 opacity-40" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
+                    </button>
+                    <!-- Week 12 -->
+                    <button onclick="switchWeek(12)" id="week-btn-12" class="week-btn w-full text-left p-4 rounded-xl border border-slate-100 bg-slate-50 text-slate-700 hover:bg-alphaWarm-100 font-medium transition-all flex items-center justify-between">
+                        <span class="flex items-center space-x-3">
+                            <span class="w-8 h-8 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center text-sm font-bold">11</span>
+                            <span class="text-base">什麼是教會？</span>
+                        </span>
+                        <svg class="w-5 h-5 opacity-40" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
+                    </button>
+                </div>
+
+                <!-- 右側詳細介紹卡片 -->
+                <div class="lg:col-span-7 bg-alphaWarm-100 border border-alphaWarm-200/60 rounded-3xl p-6 sm:p-10 shadow-inner flex flex-col justify-between min-h-[420px] relative">
+                    <div id="curriculum-detail" class="space-y-6 transition-all duration-300">
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <span class="px-3 py-1 rounded-md bg-alphaRed-100 text-alphaRed-700 text-xs font-bold tracking-widest uppercase">第一週專題</span>
+                                <span class="text-slate-400 text-sm">Week 01</span>
+                            </div>
+                            <h3 class="text-2xl sm:text-3xl font-black text-slate-900 leading-tight">人生就是如此嗎？</h3>
+                            <p class="text-slate-500 font-serif italic text-sm">"Is there more to life than this?"</p>
+                        </div>
+                        <p class="text-slate-600 leading-relaxed font-light text-base sm:text-lg">
+                            在科技發達、物質豐富的今天，我們是否常有一種隱約的虛空感？彷彿生活只是不斷重複忙碌的循環，卻不知道目的地在何方。第一週聚會，我們不急於定義宗教，而是先面對彼此心中那份對「生命更深層意義」的真實渴望。
+                        </p>
+                        <div class="bg-white/80 rounded-2xl p-4 sm:p-6 border border-alphaWarm-200/50 space-y-2">
+                            <h4 class="text-sm font-bold text-slate-800">🤔 本週熱門探討話題：</h4>
+                            <ul class="text-sm text-slate-600 space-y-1.5 list-disc list-inside">
+                                <li>忙碌生活的盡頭是什麼？</li>
+                                <li>為何追求了成功，心靈卻仍感到空虛？</li>
+                                <li>除了衣食住行、工作享樂，生命還有更偉大的可能嗎？</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 pt-6 border-t border-slate-200/50 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                        <span class="text-xs text-slate-400">可以隨時加入，中途無須補課，輕鬆無負擔。</span>
+                        <a href="#register" class="inline-flex items-center justify-center px-5 py-2.5 rounded-full text-white bg-slate-900 hover:bg-slate-800 text-sm font-medium transition-all shadow">
+                            點此預約該專題席次
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 互動式「好奇心」探索小測試 (Quiz Section) -->
+    <section id="quiz" class="py-20 sm:py-28 bg-alphaWarm-100/60 relative overflow-hidden">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
+            <div class="bg-white rounded-[2.5rem] shadow-2xl border border-alphaWarm-200/50 p-8 sm:p-12">
+                <div class="max-w-2xl mx-auto text-center space-y-3 mb-10">
+                    <span class="px-3.5 py-1 rounded-full text-xs font-bold bg-alphaRed-50 text-alphaRed-600 tracking-wider uppercase">Quick Test</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-950">探索你的生命好奇心 🧭</h2>
+                    <p class="text-slate-500 font-light text-sm sm:text-base">
+                        花一分鐘完成這個簡單測試，看看你對心靈、真理與生命意義的探索狀態。
+                    </p>
+                </div>
+
+                <!-- 測試卡片容器 -->
+                <div id="quiz-container" class="space-y-8">
+                    <!-- Step 1 -->
+                    <div id="quiz-step-1" class="quiz-step space-y-6">
+                        <div class="flex items-center justify-between text-xs font-semibold text-slate-400">
+                            <span>問題 1 / 3</span>
+                            <span>完成度 33%</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900">
+                            Q1. 在深夜或安靜的一刻，你是否曾想過「人生除了讀書工作、成家立業，還有更深層的意義嗎？」
+                        </h3>
+                        <div class="grid gap-3">
+                            <button onclick="nextStep(1, 'A')" class="quiz-option-btn w-full text-left p-4 rounded-2xl border border-slate-200 hover:border-alphaRed-500 hover:bg-alphaRed-50/20 text-slate-700 font-medium transition-all flex items-center justify-between group">
+                                <span>A. 經常會。每當安靜下來時，這念頭總會浮現。</span>
+                                <span class="w-6 h-6 rounded-full border border-slate-300 group-hover:border-alphaRed-500 flex items-center justify-center text-xs text-transparent group-hover:text-alphaRed-600 font-bold">✓</span>
+                            </button>
+                            <button onclick="nextStep(1, 'B')" class="quiz-option-btn w-full text-left p-4 rounded-2xl border border-slate-200 hover:border-alphaRed-500 hover:bg-alphaRed-50/20 text-slate-700 font-medium transition-all flex items-center justify-between group">
+                                <span>B. 偶爾。通常在生活遭逢重大轉折或挫折時。</span>
+                                <span class="w-6 h-6 rounded-full border border-slate-300 group-hover:border-alphaRed-500 flex items-center justify-center text-xs text-transparent group-hover:text-alphaRed-600 font-bold">✓</span>
+                            </button>
+                            <button onclick="nextStep(1, 'C')" class="quiz-option-btn w-full text-left p-4 rounded-2xl border border-slate-200 hover:border-alphaRed-500 hover:bg-alphaRed-50/20 text-slate-700 font-medium transition-all flex items-center justify-between group">
+                                <span>C. 很少。日子很忙，幾乎沒空多想這些。</span>
+                                <span class="w-6 h-6 rounded-full border border-slate-300 group-hover:border-alphaRed-500 flex items-center justify-center text-xs text-transparent group-hover:text-alphaRed-600 font-bold">✓</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div id="quiz-step-2" class="quiz-step hidden space-y-6">
+                        <div class="flex items-center justify-between text-xs font-semibold text-slate-400">
+                            <span>問題 2 / 3</span>
+                            <span>完成度 66%</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900">
+                            Q2. 對於探討「造物主是否存在、死後世界、或是超自然醫治」等話題，你的態度是？
+                        </h3>
+                        <div class="grid gap-3">
+                            <button onclick="nextStep(2, 'A')" class="quiz-option-btn w-full text-left p-4 rounded-2xl border border-slate-200 hover:border-alphaRed-500 hover:bg-alphaRed-50/20 text-slate-700 font-medium transition-all flex items-center justify-between group">
+                                <span>A. 非常好奇！很樂意客觀、理性地聽聽看。</span>
+                                <span class="w-6 h-6 rounded-full border border-slate-300 group-hover:border-alphaRed-500 flex items-center justify-center text-xs text-transparent group-hover:text-alphaRed-600 font-bold">✓</span>
+                            </button>
+                            <button onclick="nextStep(2, 'B')" class="quiz-option-btn w-full text-left p-4 rounded-2xl border border-slate-200 hover:border-alphaRed-500 hover:bg-alphaRed-50/20 text-slate-700 font-medium transition-all flex items-center justify-between group">
+                                <span>B. 保持開放。有空就聊聊，沒空也沒差。</span>
+                                <span class="w-6 h-6 rounded-full border border-slate-300 group-hover:border-alphaRed-500 flex items-center justify-center text-xs text-transparent group-hover:text-alphaRed-600 font-bold">✓</span>
+                            </button>
+                            <button onclick="nextStep(2, 'C')" class="quiz-option-btn w-full text-left p-4 rounded-2xl border border-slate-200 hover:border-alphaRed-500 hover:bg-alphaRed-50/20 text-slate-700 font-medium transition-all flex items-center justify-between group">
+                                <span>C. 有點保留。擔心會被強迫推銷信仰或說教。</span>
+                                <span class="w-6 h-6 rounded-full border border-slate-300 group-hover:border-alphaRed-500 flex items-center justify-center text-xs text-transparent group-hover:text-alphaRed-600 font-bold">✓</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div id="quiz-step-3" class="quiz-step hidden space-y-6">
+                        <div class="flex items-center justify-between text-xs font-semibold text-slate-400">
+                            <span>問題 3 / 3</span>
+                            <span>完成度 100%</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900">
+                            Q3. 若有一個聚會「有免費美食，完全不勉強，還能自由表達反對意見」，你願意撥出 2 小時試試看嗎？
+                        </h3>
+                        <div class="grid gap-3">
+                            <button onclick="nextStep(3, 'A')" class="quiz-option-btn w-full text-left p-4 rounded-2xl border border-slate-200 hover:border-alphaRed-500 hover:bg-alphaRed-50/20 text-slate-700 font-medium transition-all flex items-center justify-between group">
+                                <span>A. 當然願意！聽起來是非常有趣、安全的交流環境。</span>
+                                <span class="w-6 h-6 rounded-full border border-slate-300 group-hover:border-alphaRed-500 flex items-center justify-center text-xs text-transparent group-hover:text-alphaRed-600 font-bold">✓</span>
+                            </button>
+                            <button onclick="nextStep(3, 'B')" class="quiz-option-btn w-full text-left p-4 rounded-2xl border border-slate-200 hover:border-alphaRed-500 hover:bg-alphaRed-50/20 text-slate-700 font-medium transition-all flex items-center justify-between group">
+                                <span>B. 如果時間和地點剛好配合，我願意去嘗試一次。</span>
+                                <span class="w-6 h-6 rounded-full border border-slate-300 group-hover:border-alphaRed-500 flex items-center justify-center text-xs text-transparent group-hover:text-alphaRed-600 font-bold">✓</span>
+                            </button>
+                            <button onclick="nextStep(3, 'C')" class="quiz-option-btn w-full text-left p-4 rounded-2xl border border-slate-200 hover:border-alphaRed-500 hover:bg-alphaRed-50/20 text-slate-700 font-medium transition-all flex items-center justify-between group">
+                                <span>C. 還是會猶豫，怕現場氣氛會很尷尬或不自在。</span>
+                                <span class="w-6 h-6 rounded-full border border-slate-300 group-hover:border-alphaRed-500 flex items-center justify-center text-xs text-transparent group-hover:text-alphaRed-600 font-bold">✓</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 測試結果頁面 -->
+                    <div id="quiz-result" class="hidden space-y-6 text-center py-6">
+                        <div class="w-16 h-16 bg-alphaRed-50 text-alphaRed-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.907c.961 0 1.36 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.77-.57-.371-1.81.588-1.81h4.907a1 1 0 00.95-.69l1.519-4.674z"></path></svg>
+                        </div>
+                        <h3 class="text-2xl font-black text-slate-900" id="result-title">你的探索潛能：深思熟慮的探尋者 🍃</h3>
+                        <p class="text-slate-600 max-w-xl mx-auto font-light leading-relaxed text-base sm:text-lg" id="result-text">
+                            你對生命的深層話題抱持著非常真誠且健康的態度。你渴望尋找意義，但同時也保持理性的審視與判斷。你非常適合「啟發課程」這種零說教、高度包容的平台！
+                        </p>
+                        <div class="bg-alphaWarm-100 rounded-2xl p-6 max-w-lg mx-auto border border-alphaWarm-200/50 space-y-4">
+                            <p class="text-sm font-semibold text-slate-800">✨ 給你的專屬建議：</p>
+                            <p class="text-xs sm:text-sm text-slate-500 leading-relaxed text-left">
+                                無論你是想尋找生命的終極解答、想驗證基督信仰是否真實、還是單純想在輕鬆的週五晚上認識朋友並暢談心聲，「啟發」都是你跨出第一步的最佳溫室。不需要任何預先信仰基礎，帶著你所有的疑問與懷疑前來即可！
+                            </p>
+                        </div>
+                        <div class="flex flex-col sm:flex-row justify-center gap-4 pt-4">
+                            <button onclick="resetQuiz()" class="px-6 py-3 rounded-full border border-slate-200 text-slate-700 bg-white hover:bg-slate-50 font-medium text-sm transition-all">
+                                重新測驗
+                            </button>
+                            <a href="#register" class="px-8 py-3.5 rounded-full text-white bg-alphaRed-600 hover:bg-alphaRed-700 font-semibold text-sm transition-all shadow-lg shadow-alphaRed-600/20">
+                                免費預約下一期啟發
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 真實見證 (Testimonials) -->
+    <section class="py-20 sm:py-28 bg-white border-y border-alphaWarm-200/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mx-auto text-center space-y-4 mb-16">
+                <h2 class="text-xs font-bold tracking-widest text-alphaRed-600 uppercase">Real Stories</h2>
+                <p class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">他們在啟發中發現了什麼？</p>
+                <div class="w-12 h-1 bg-alphaRed-500 mx-auto rounded"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-alphaWarm-50 rounded-3xl p-8 border border-alphaWarm-200/40 relative flex flex-col justify-between">
+                    <span class="text-5xl text-alphaRed-200 font-serif absolute top-4 left-6 pointer-events-none">“</span>
+                    <div class="space-y-4 relative z-10">
+                        <p class="text-slate-600 leading-relaxed font-light italic">
+                            「一開始我只是為了蹭免費的晚餐才去的，也做好隨時會被傳教的心理準備。但一整晚下來，小組長不但沒有強灌答案，反而耐心地聽完我所有對上帝的質疑，這給了我極大的震撼與安全感。這是我第一次體驗到，信仰原來可以被溫和地探尋。」
+                        </p>
+                    </div>
+                    <div class="flex items-center space-x-3 pt-6 border-t border-slate-200/50 mt-6">
+                        <div class="w-10 h-10 rounded-full bg-slate-300 flex items-center justify-center font-bold text-slate-700">俊</div>
+                        <div>
+                            <h4 class="font-bold text-slate-900 text-sm">小俊 (化名)</h4>
+                            <p class="text-xs text-slate-400">軟體工程師，曾為無神論者</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-alphaWarm-50 rounded-3xl p-8 border border-alphaWarm-200/40 relative flex flex-col justify-between">
+                    <span class="text-5xl text-alphaRed-200 font-serif absolute top-4 left-6 pointer-events-none">“</span>
+                    <div class="space-y-4 relative z-10">
+                        <p class="text-slate-600 leading-relaxed font-light italic">
+                            「剛搬到新城市，完全不認識任何人，心裡很寂寞。啟發課程成了我的避風港。每週五晚上能聚在一起吃熱呼呼的飯菜，看很有啟發性的影片，再聊聊生活中對生命、對關係的無奈，這種彼此傾聽、毫無評判的愛，幫助我度過了那段最低潮的日子。」
+                        </p>
+                    </div>
+                    <div class="flex items-center space-x-3 pt-6 border-t border-slate-200/50 mt-6">
+                        <div class="w-10 h-10 rounded-full bg-slate-300 flex items-center justify-center font-bold text-slate-700">婷</div>
+                        <div>
+                            <h4 class="font-bold text-slate-900 text-sm">婷婷 (化名)</h4>
+                            <p class="text-xs text-slate-400">大三學生，遠赴異鄉求學</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-alphaWarm-50 rounded-3xl p-8 border border-alphaWarm-200/40 relative flex flex-col justify-between md:col-span-2 lg:col-span-1">
+                    <span class="text-5xl text-alphaRed-200 font-serif absolute top-4 left-6 pointer-events-none">“</span>
+                    <div class="space-y-4 relative z-10">
+                        <p class="text-slate-600 leading-relaxed font-light italic">
+                            「我以前以為教會都是那些很虔誠、很完美的人去的地方。但啟發完全顛覆了我的想像。來的人各式各樣，有疑惑、有憤怒、有迷茫，但大家都有一個共同點——都非常真誠。這不是教條式的學習，而是一場治癒人心的靈魂對話。」
+                        </p>
+                    </div>
+                    <div class="flex items-center space-x-3 pt-6 border-t border-slate-200/50 mt-6">
+                        <div class="w-10 h-10 rounded-full bg-slate-300 flex items-center justify-center font-bold text-slate-700">阿</div>
+                        <div>
+                            <h4 class="font-bold text-slate-900 text-sm">阿德 (化名)</h4>
+                            <p class="text-xs text-slate-400">自由工作者</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 常見問題 (FAQ Section) -->
+    <section id="faq" class="py-20 sm:py-28 bg-alphaWarm-100/60 overflow-hidden">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6">
+            <div class="max-w-3xl mx-auto text-center space-y-4 mb-16">
+                <h2 class="text-xs font-bold tracking-widest text-alphaRed-600 uppercase">Frequently Asked Questions</h2>
+                <p class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">為你解答心中的疑問</p>
+                <div class="w-12 h-1 bg-alphaRed-500 mx-auto rounded"></div>
+            </div>
+
+            <!-- FAQ Accordion -->
+            <div class="space-y-4">
+                <!-- Q1 -->
+                <div class="bg-white border border-alphaWarm-200/50 rounded-2xl overflow-hidden transition-all duration-300 shadow-sm">
+                    <button onclick="toggleFAQ(1)" class="w-full text-left p-6 flex justify-between items-center hover:bg-slate-50 transition-colors">
+                        <span class="text-lg font-bold text-slate-900">啟發課程真的完全免費嗎？後面會收費嗎？</span>
+                        <svg id="faq-icon-1" class="w-5 h-5 text-slate-400 transform transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div id="faq-ans-1" class="hidden border-t border-slate-100 p-6 bg-slate-50/50 text-slate-600 leading-relaxed font-light">
+                        是的，啟發課程從第一週到最後一週，包含所有的餐點/茶點、影片觀看、以及小組材料，<strong>均為 100% 完全免費</strong>。我們不會在課程後半段巧立名目要求任何費用，你可以安心參與。
+                    </div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="bg-white border border-alphaWarm-200/50 rounded-2xl overflow-hidden transition-all duration-300 shadow-sm">
+                    <button onclick="toggleFAQ(2)" class="w-full text-left p-6 flex justify-between items-center hover:bg-slate-50 transition-colors">
+                        <span class="text-lg font-bold text-slate-900">我不是基督徒，或我是其他信仰者，也可以參加嗎？</span>
+                        <svg id="faq-icon-2" class="w-5 h-5 text-slate-400 transform transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div id="faq-ans-2" class="hidden border-t border-slate-100 p-6 bg-slate-50/50 text-slate-600 leading-relaxed font-light">
+                        當然非常歡迎！啟發課程正是<strong>專為非基督徒、懷疑論者、或是正在尋找生命意義的人</strong>所設計的。不論你的宗教文化背景為何，我們都極其尊重，更歡迎不同的思想在安全與友善的對話中激盪。
+                    </div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="bg-white border border-alphaWarm-200/50 rounded-2xl overflow-hidden transition-all duration-300 shadow-sm">
+                    <button onclick="toggleFAQ(3)" class="w-full text-left p-6 flex justify-between items-center hover:bg-slate-50 transition-colors">
+                        <span class="text-lg font-bold text-slate-900">我一定要全程參與 11 週嗎？如果我中途有事缺席怎麼辦？</span>
+                        <svg id="faq-icon-3" class="w-5 h-5 text-slate-400 transform transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div id="faq-ans-3" class="hidden border-t border-slate-100 p-6 bg-slate-50/50 text-slate-600 leading-relaxed font-light">
+                        完全沒有硬性要求。你大可以先來參加第一週，如果覺得不適合或不習慣，可以隨時決定不再前來，完全不會有任何壓力和白眼。若中間有幾週請假、中途加入，也都不需有任何顧慮或補課負擔。
+                    </div>
+                </div>
+
+                <!-- Q4 -->
+                <div class="bg-white border border-alphaWarm-200/50 rounded-2xl overflow-hidden transition-all duration-300 shadow-sm">
+                    <button onclick="toggleFAQ(4)" class="w-full text-left p-6 flex justify-between items-center hover:bg-slate-50 transition-colors">
+                        <span class="text-lg font-bold text-slate-900">小組討論時，我一定要發言嗎？我口才不好或很害羞。</span>
+                        <svg id="faq-icon-4" class="w-5 h-5 text-slate-400 transform transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div id="faq-ans-4" class="hidden border-t border-slate-100 p-6 bg-slate-50/50 text-slate-600 leading-relaxed font-light">
+                        在啟發，你可以<strong>全程只聽、不說</strong>，默默喝你的咖啡或熱茶，完全不會有人勉強你回答問題。我們希望你是在最自在、感到最安全的情況下進行探索。
+                    </div>
+                </div>
+
+                <!-- Q5 -->
+                <div class="bg-white border border-alphaWarm-200/50 rounded-2xl overflow-hidden transition-all duration-300 shadow-sm">
+                    <button onclick="toggleFAQ(5)" class="w-full text-left p-6 flex justify-between items-center hover:bg-slate-50 transition-colors">
+                        <span class="text-lg font-bold text-slate-900">啟發是實體還是線上聚會？時間是何時？</span>
+                        <svg id="faq-icon-5" class="w-5 h-5 text-slate-400 transform transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div id="faq-ans-5" class="hidden border-t border-slate-100 p-6 bg-slate-50/50 text-slate-600 leading-relaxed font-light">
+                        我們通常會同時提供「實體聚會」與「線上聚會」兩種彈性選擇，您可以根據您的地點與作息來挑選報名。報名後，我們會由專人與您聯絡，與您確認最適合、最方便的班級時間與地點。
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 報名表單區 (Registration Section) -->
+    <section id="register" class="py-20 sm:py-28 bg-white relative overflow-hidden">
+        <!-- 裝飾模糊圓 -->
+        <div class="absolute w-96 h-96 bg-alphaRed-50 rounded-full blur-3xl -bottom-10 -right-10 opacity-60"></div>
+        <div class="absolute w-96 h-96 bg-alphaWarm-100 rounded-full blur-3xl -top-10 -left-10 opacity-60"></div>
+
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 relative z-10">
+            <div class="bg-gradient-to-b from-alphaWarm-100 to-white border border-alphaWarm-200/60 rounded-[2.5rem] shadow-2xl p-8 sm:p-12">
+                <div class="text-center space-y-4 mb-10">
+                    <span class="px-3.5 py-1 rounded-full text-xs font-bold bg-alphaRed-50 text-alphaRed-600 tracking-wider uppercase">Join Us</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900">預約你的啟發席次</h2>
+                    <p class="text-slate-500 font-light max-w-md mx-auto text-sm sm:text-base">
+                        給自己一個探索生命、傾聽心靈、結交好友的機會。只需填寫以下簡單資訊，我們將在 1-3 天內派專人以溫和貼心的方式與你聯絡。
+                    </p>
+                </div>
+
+                <!-- 報名表單 -->
+                <form id="alpha-form" onsubmit="handleFormSubmit(event)" class="space-y-6">
+                    <div class="grid sm:grid-cols-2 gap-6">
+                        <div>
+                            <label for="name" class="block text-sm font-semibold text-slate-700 mb-2">真實姓名 / 稱呼 <span class="text-alphaRed-500">*</span></label>
+                            <input type="text" id="name" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-alphaRed-500/20 focus:border-alphaRed-500 transition-all bg-white" placeholder="請輸入姓名或稱呼">
+                        </div>
+                        <div>
+                            <label for="gender" class="block text-sm font-semibold text-slate-700 mb-2">性別</label>
+                            <select id="gender" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-alphaRed-500/20 focus:border-alphaRed-500 transition-all bg-white">
+                                <option value="unspecified">保留/不透露</option>
+                                <option value="male">男</option>
+                                <option value="female">女</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="grid sm:grid-cols-2 gap-6">
+                        <div>
+                            <label for="phone" class="block text-sm font-semibold text-slate-700 mb-2">IG <span class="text-alphaRed-500">*</span></label>
+                            <input type="tel" id="phone" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-alphaRed-500/20 focus:border-alphaRed-500 transition-all bg-white" placeholder="例：123_456">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-semibold text-slate-700 mb-2">電子信箱 <span class="text-alphaRed-500">*</span></label>
+                            <input type="email" id="email" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-alphaRed-500/20 focus:border-alphaRed-500 transition-all bg-white" placeholder="yourname@email.com">
+                        </div>
+                    </div>
+
+                    <div class="grid sm:grid-cols-2 gap-6">
+                        <div>
+                            <label for="format" class="block text-sm font-semibold text-slate-700 mb-2">偏好的聚會方式</label>
+                            <select id="format" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-alphaRed-500/20 focus:border-alphaRed-500 transition-all bg-white">
+                                <option value="實體聚會">實體聚會（享用溫馨實體美食與互動）</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="time" class="block text-sm font-semibold text-slate-700 mb-2">方便被聯絡的時間</label>
+                            <select id="time" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-alphaRed-500/20 focus:border-alphaRed-500 transition-all bg-white">
+                                <option value="平日、假日皆可">平日、假日皆可</option>
+                                <option value="平日晚上">平日晚上 (18:00 - 21:00)</option>
+                                <option value="週末假日">週末假日 (六日全天)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="message" class="block text-sm font-semibold text-slate-700 mb-2">有什麼想對我們說的，或心中的期待嗎？</label>
+                        <textarea id="message" rows="3" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-alphaRed-500/20 focus:border-alphaRed-500 transition-all bg-white resize-none" placeholder="例：我很害羞、期待認識新朋友、有哪些特定問題想問、或攜伴參加等。"></textarea>
+                    </div>
+
+                    <!-- 隱私保障說明 -->
+                    <div class="flex items-start space-x-3 text-xs text-slate-500 bg-alphaWarm-50 p-4 rounded-xl border border-alphaWarm-200/50">
+                        <input type="checkbox" required id="privacy-check" class="mt-0.5 rounded text-alphaRed-600 focus:ring-alphaRed-500">
+                        <label for="privacy-check" class="leading-relaxed">
+                            我同意以上填寫之個人資料僅供啟發課程聯絡人發送開課通知、確認上課意願與班級協調之用。我們嚴格保護您的隱私，承諾絕對不會向任何第三方揭露或做其他商業用途。
+                        </label>
+                    </div>
+
+                    <!-- 送出按鈕 -->
+                    <div class="pt-2 text-center">
+                        <button type="submit" id="submit-btn" class="w-full sm:w-auto px-10 py-4 bg-alphaRed-600 hover:bg-alphaRed-700 text-white font-bold rounded-full tracking-wider text-lg shadow-xl shadow-alphaRed-600/30 hover:shadow-alphaRed-700/40 hover:scale-[1.02] active:scale-100 transition-all duration-200">
+                            確認並送出免費預約
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- 成功提交報名的彈窗 Modal -->
+    <div id="success-modal" class="hidden fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity" aria-hidden="true" onclick="closeSuccessModal()"></div>
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            <div class="inline-block align-bottom bg-white rounded-3xl text-left overflow-hidden shadow-2xl transform transition-all sm:my-8 sm:align-middle sm:max-w-md sm:w-full border border-alphaWarm-200">
+                <div class="bg-white px-6 pt-8 pb-6 sm:p-8">
+                    <div class="text-center space-y-4">
+                        <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-100">
+                            <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
+                        </div>
+                        
+                        <h3 class="text-2xl font-black text-slate-900" id="modal-title">預約報名成功！✨</h3>
+                        
+                        <div class="text-sm text-slate-600 space-y-3 font-light leading-relaxed">
+                            <p>感謝您的報名！我們已經收到您的預約資訊。</p>
+                            <p id="google-sheet-status" class="hidden text-xs text-emerald-600 bg-emerald-50 p-2 rounded border border-emerald-200 text-center font-semibold">
+                                🎉 資料已同步寫入 Google 試算表！
+                            </p>
+                            <p class="bg-alphaWarm-100 p-4 rounded-xl border border-alphaWarm-200/50 text-xs text-slate-500 text-left">
+                                <strong>💡 下一步：</strong><br>
+                                啟發課程小組同工將在 1-3 天內，透過電子郵件或電話/簡訊與您取得聯絡。我們會與您說明最近一次開課的時間、聚會地點（或線上連結），並確認您最方便參與的班次。
+                            </p>
+                            <p>期待在課程中與您共享美食，探索人生！</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-slate-50 px-6 py-4 sm:px-8 sm:py-5 flex justify-center">
+                    <button type="button" onclick="closeSuccessModal()" class="w-full inline-flex justify-center px-6 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-medium text-sm transition-colors shadow">
+                        太棒了，期待中！
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 錯誤處理 Modal -->
+    <div id="error-modal" class="hidden fixed inset-0 z-50 overflow-y-auto" aria-labelledby="error-modal-title" role="dialog" aria-modal="true">
+        <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity" aria-hidden="true" onclick="closeErrorModal()"></div>
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            <div class="inline-block align-bottom bg-white rounded-3xl text-left overflow-hidden shadow-2xl transform transition-all sm:my-8 sm:align-middle sm:max-w-md sm:w-full border border-rose-200">
+                <div class="bg-white px-6 pt-8 pb-6 sm:p-8">
+                    <div class="text-center space-y-4">
+                        <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-rose-50 text-rose-600 border border-rose-100">
+                            <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-black text-rose-700" id="error-modal-title">傳送失敗 😢</h3>
+                        <div class="text-sm text-slate-600 space-y-2 font-light leading-relaxed">
+                            <p>很抱歉，資料傳送過程發生了錯誤。</p>
+                            <p id="error-message-text" class="text-xs bg-rose-50 p-3 rounded-lg text-rose-600 font-mono text-left"></p>
+                            <p class="text-xs text-slate-400">請確認您的網路連線，或稍後再試。如果持續失敗，可以直接透過電子郵件或社群與我們聯絡。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-slate-50 px-6 py-4 sm:px-8 sm:py-5 flex justify-center">
+                    <button type="button" onclick="closeErrorModal()" class="w-full inline-flex justify-center px-6 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-medium text-sm transition-colors shadow">
+                        關閉並返回重試
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 頁尾 (Footer) -->
+    <footer class="bg-slate-950 text-slate-400 py-16 sm:py-20 border-t border-slate-900 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
+                
+                <div class="md:col-span-6 space-y-5">
+                    <div class="flex items-center space-x-3">
+                        <!-- Alpha Footer Logo (同步修正為正向經典問號) -->
+                        <svg class="w-8 h-8 text-alphaRed-500" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="50" cy="50" r="45" stroke="currentColor" stroke-width="8" />
+                            <path d="M38 38 C38 28, 50 22, 60 30 C68 38, 50 48, 50 58" stroke="currentColor" stroke-width="8" stroke-linecap="round" />
+                            <circle cx="50" cy="74" r="5" fill="currentColor" />
+                        </svg>
+                        <div>
+                            <span class="font-serif text-xl font-bold tracking-wider text-white">Alpha</span>
+                            <span class="text-xs block text-slate-500 tracking-widest font-light -mt-1">啟發課程</span>
+                        </div>
+                    </div>
+                    <p class="max-w-md text-sm text-slate-400 font-light leading-relaxed">
+                        「啟發」是一個讓任何人探索生命與基督信仰的平台。在一個熱情、友善、完全無壓力的環境中，讓我們共享美食，分享彼此對生命的提問，並在愛與尊重中展開旅程。
+                    </p>
+                    <div class="flex items-center space-x-3 text-xs text-slate-500">
+                        <span>© 2026 Alpha Course. 本網頁專為課程宣傳與探索設計</span>
+                    </div>
+                </div>
+
+                <!-- 快速連結 -->
+                <div class="md:col-span-3 space-y-4">
+                    <h4 class="text-sm font-bold text-white tracking-widest uppercase">快速選單</h4>
+                    <ul class="space-y-2.5 text-sm">
+                        <li><a href="#about" class="hover:text-white transition-colors">什麼是啟發？</a></li>
+                        <li><a href="#elements" class="hover:text-white transition-colors">每次聚會的三大元素</a></li>
+                        <li><a href="#curriculum" class="hover:text-white transition-colors">11週課程專題介紹</a></li>
+                        <li><a href="#quiz" class="hover:text-white transition-colors">探索小測試</a></li>
+                        <li><a href="#faq" class="hover:text-white transition-colors">常見問題 FAQ</a></li>
+                    </ul>
+                </div>
+
+                <!-- 聯絡與社群 -->
+                <div class="md:col-span-3 space-y-4">
+                    <h4 class="text-sm font-bold text-white tracking-widest uppercase">探索更多系列</h4>
+                    <ul class="space-y-2.5 text-sm">
+                        <li><a href="#" class="hover:text-white transition-colors">青年啟發課程 (Alpha Youth)</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">美滿婚姻課程 (Marriage)</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">美滿預備之美 (Marriage Prep)</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">家長啟發系列 (Parenting)</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-slate-900 mt-12 pt-8 text-center text-xs text-slate-600 space-y-2">
+                <p>啟發課程發源於英國布朗普頓聖三一堂（HTB），為全球基督信仰探索之通用課程。</p>
+                <p>無論您的背景如何，我們都衷心期盼能與您坐下來，吃一頓飯，聽聽您對生命的故事與提問。</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript 互動與資料處理邏輯 -->
+    <script>
+        /**
+         * 🔗 GOOGLE 試算表連結設定 (Google Apps Script Web App URL)
+         * * 將您部署完成的 Google Apps Script「網頁應用程式網址」貼在下方的單引號中。
+         * 例如: 'https://script.google.com/macros/s/AKfycb..._abc123/exec'
+         * * 留空 '' 則會預設進行前端極速模擬，直接彈出成功 Modal。
+         */
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz4HhVijuGm4UUoY6VpQNEVIN2SKOabReR9BP2nxo0jQ94saEzNL3WO8OSKNc7imnTq/exec';
+
+        // 行動版選單開關
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIconOpen = document.getElementById('menu-icon-open');
+        const menuIconClose = document.getElementById('menu-icon-close');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            const isHidden = mobileMenu.classList.contains('hidden');
+            if (isHidden) {
+                mobileMenu.classList.remove('hidden');
+                menuIconOpen.classList.add('hidden');
+                menuIconClose.classList.remove('hidden');
+            } else {
+                mobileMenu.classList.add('hidden');
+                menuIconOpen.classList.remove('hidden');
+                menuIconClose.classList.add('hidden');
+            }
+        });
+
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuIconOpen.classList.remove('hidden');
+                menuIconClose.classList.add('hidden');
+            });
+        });
+
+        // 11週大綱切換數據
+        const weekDetails = {
+            1: {
+                title: "人生就是如此嗎？",
+                eng: "Is there more to life than this?",
+                weekNum: "Week 01",
+                tag: "第一週專題",
+                desc: "在科技發達、物質豐富的今天，我們是否常有一種隱約的虛空感？彷彿生活只是不斷重複忙碌的循環，卻不知道目的地在何方。第一週聚會，我們不急於定義宗教，而是先面對彼此心中那份對「生命更深層意義」的真實渴望。",
+                topics: ["忙碌生活的盡頭是什麼？", "為何追求了成功，心靈卻仍感到空虛？", "除了衣食住行、工作享樂，生命還有更偉大的可能嗎？"]
+            },
+            2: {
+                title: "耶穌是誰？",
+                eng: "Who is Jesus?",
+                weekNum: "Week 02",
+                tag: "第二週專題",
+                desc: "耶穌無疑是人類歷史上最具影響力的人物之一。有人說祂是偉大的道德教師，有人說祂是瘋子，也有人說祂是神。我們將從歷史記載、考古學與聖經文本出發，客觀考證「拿撒勒人耶穌」這個人的真實歷史面貌與宣告。",
+                topics: ["歷史上有關耶穌的非聖經證據有哪些？", "耶穌真的是瘋狂、騙子、還是真理？", "耶穌對世界的深遠影響為何？"]
+            },
+            3: {
+                title: "耶穌為何而死？",
+                eng: "Why did Jesus die?",
+                weekNum: "Week 03",
+                tag: "第三週專題",
+                desc: "十字架本是殘忍的刑具，今天卻成為全世界愛與救贖的象徵。基督信仰的核心，為什麼繫於耶穌的死亡？我們將探討「罪」與阻礙人類心靈深處平安的痛苦根源，並了解十字架如何為每個人帶來恩典與新生命。",
+                topics: ["如何理解現代社會中的「罪」與人性？", "耶穌的受難與我們的現代生活有何連結？", "什麼是完全的赦免與無條件的接納？"]
+            },
+            4: {
+                title: "如何得著信心？",
+                eng: "How can I have faith?",
+                weekNum: "Week 04",
+                tag: "第四週專題",
+                desc: "信心是盲目的迷信嗎？是否要放下所有理智才能信？本週我們將探討什麼是健康的信心。信心並非毫無懷疑，而是基於關係的建立、經歷的累積以及對真理的合理解答，帶領我們踏上與上帝同行的確實之路。",
+                topics: ["信心是盲目的「瞎信」嗎？", "信仰與理性邏輯能夠並存嗎？", "如何確切體驗並感知到上帝的同在？"]
+            },
+            5: {
+                title: "為什麼禱告？怎樣禱告？",
+                eng: "Why and how do I pray?",
+                weekNum: "Week 05",
+                tag: "第五週專題",
+                desc: "禱告不是神秘的咒語、不是求神問卜的交換條件，而是與一位深愛你的天父進行心與心的誠實對話。不論你是滿懷感激、心痛哭泣、還是充滿憤怒，在禱告中你都能全然流露。我們將探討如何開始這段親密談話。",
+                topics: ["為什麼一位全知的神還需要我們禱告？", "如何開始每天最簡單的三個禱告？", "神真的會垂聽與回應我們的呼求嗎？"]
+            },
+            6: {
+                title: "為什麼讀聖經？怎樣讀？",
+                eng: "Why and how should I read the Bible?",
+                weekNum: "Week 06",
+                tag: "第六週專題",
+                desc: "聖經是全球最暢銷、譯本最多的書，更塑造了西方文明與世界法律、道德的基石。這本書難道只是一疊古老的神話故事嗎？我們將介紹聖經的由來，以及如何以務實、易懂的方式閱讀它，看它如何回答我們生活的疑難雜症。",
+                topics: ["聖經是神話還是真實的歷史記載？", "在資訊爆炸的今天，古老聖經如何對我說話？", "給初學者的簡單聖經閱讀指南。"]
+            },
+            7: {
+                title: "上帝如何指引我們？",
+                eng: "How does God guide us?",
+                weekNum: "Week 07",
+                tag: "第七週專題",
+                desc: "每個人都會面臨人生的抉擇：轉職、婚姻、創業、方向、低潮。如果真的有一位愛我們的造物主，祂會關心我這微小的生活決定嗎？本週我們將探討上帝指引人心的五種途徑，幫助我們在混亂的世界中找到平靜的方向。",
+                topics: ["如何分辨自己的想法、別人的期待與神的指引？", "當面對重大十字路口時，該如何尋求指引？", "在困境中，如何保持堅定的平安與方向感？"]
+            },
+            8: {
+                title: "特別週末：聖靈是誰？與我們的關係？",
+                eng: "Who is the Holy Spirit & What does He do?",
+                weekNum: "The Weekend",
+                tag: "啟發週末營特輯",
+                desc: "這是整個課程最輕鬆、最受歡迎的環節。在週末兩天的特別營會中，我們不只是學習理論，而是去體會神真實的愛。我們將聚焦於聖靈是誰、聖靈做什麼工作、以及如何被聖靈充滿，經歷心靈深處被愛包裹的釋放感。",
+                topics: ["什麼是聖靈充滿？這是一種什麼體驗？", "如何經歷心靈的自由與得著屬靈的力量？", "醫治與恩賜，在今天仍是真實的嗎？"]
+            },
+            9: {
+                title: "如何抵擋邪惡？",
+                eng: "How can I resist evil?",
+                weekNum: "Week 08",
+                tag: "第八週專題",
+                desc: "現實生活中，我們常會遇到惡意、誘惑、甚至來自靈界或環境的黑暗壓迫。本週我們不談迷信，而是以正面積極的視角，探討信仰中提供的「屬靈軍裝」，學習如何在這個充滿衝突的世界中保護自己、戰勝心魔與黑暗。",
+                topics: ["為什麼世界有這麼多苦難與邪惡？", "如何面對成癮、恐懼、誘惑與壞習慣？", "信仰如何保護我們的精神與心靈世界安全？"]
+            },
+            10: {
+                title: "為什麼傳福音？怎樣傳？",
+                eng: "Why and how should I tell others?",
+                weekNum: "Week 09",
+                tag: "第九週專題",
+                desc: "好消息本來就是用來分享的。就如同我們發現了美食、美景，會忍不住推薦給最愛的人一樣，遇見了生命的豐盛，也會自然湧流。本週我們探討分享信仰的意義，並學習以一種「最自然、最不勉強、最尊重他人意願」的方式，把愛傳遞出去。",
+                topics: ["為什麼基督徒總是喜歡與人分享信仰？", "如何與持反對意見的親友進行健康的談話？", "如何用自己的生命故事帶來積極的影響？"]
+            },
+            11: {
+                title: "上帝今天還醫治人嗎？",
+                eng: "Does God heal today?",
+                weekNum: "Week 10",
+                tag: "第十週專題",
+                desc: "生老病死是人生的常態。但在苦難與絕望中，神蹟奇事和醫治的禱告在今天依然發生嗎？我們不迴避棘手的疑問，誠實面對科學與神蹟的對抗、疾病未得醫治時的痛苦，同時也帶著盼望，學習如何溫柔地為身邊生病的人祈禱。",
+                topics: ["現代醫學與超自然醫治是否相衝突？", "如果神醫治人，為什麼世界上依然有這麼多痛苦？", "如何以愛與信心，為身邊軟弱受苦的人祝福禱告？"]
+            },
+            12: {
+                title: "什麼是教會？",
+                eng: "What about the Church?",
+                weekNum: "Week 11",
+                tag: "第十一週專題",
+                desc: "教會不是一棟冷冰冰、有十字架的建築，也不是某個宗教機構，而是一群願意彼此相愛、彼此扶持、不完美卻真誠的「人」所組成的大家庭。最後一週，我們將為這段奇妙的旅程畫下句點，並探討如何將這份愛融入我們日常生活的關係中。",
+                topics: ["為什麼去教會不是去參加宗教儀式？", "如何在一個支持性的社群中持續活出精彩人生？", "啟發課程結束後，我的下一步可以去哪裡？"]
+            }
+        };
+
+        function switchWeek(weekNum) {
+            const buttons = document.querySelectorAll('.week-btn');
+            buttons.forEach(btn => {
+                const id = btn.id;
+                const isTarget = id === `week-btn-${weekNum}`;
+                
+                btn.className = "week-btn w-full text-left p-4 rounded-xl border transition-all flex items-center justify-between ";
+                
+                if (isTarget) {
+                    if (weekNum === 8) {
+                        btn.className += "border-amber-400 bg-amber-50 text-amber-900 font-bold shadow-md";
+                    } else {
+                        btn.className += "border-alphaRed-100 bg-alphaRed-50 text-alphaRed-700 font-bold shadow-md";
+                    }
+                    const svg = btn.querySelector('svg');
+                    if (svg) svg.className = "w-5 h-5 text-current";
+                } else {
+                    if (id === 'week-btn-8') {
+                        btn.className += "border-slate-100 bg-amber-50 text-amber-800/80 hover:bg-amber-100/50 font-medium";
+                    } else {
+                        btn.className += "border-slate-100 bg-slate-50 text-slate-700 hover:bg-alphaWarm-100 font-medium";
+                    }
+                    const svg = btn.querySelector('svg');
+                    if (svg) svg.className = "w-5 h-5 opacity-40";
+                }
+            });
+
+            const detailContainer = document.getElementById('curriculum-detail');
+            detailContainer.classList.add('opacity-0', 'scale-95');
+
+            setTimeout(() => {
+                const data = weekDetails[weekNum];
+                let topicsHtml = '';
+                data.topics.forEach(topic => {
+                    topicsHtml += `<li>${topic}</li>`;
+                });
+
+                detailContainer.innerHTML = `
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-3 py-1 rounded-md ${weekNum === 8 ? 'bg-amber-100 text-amber-800' : 'bg-alphaRed-100 text-alphaRed-700'} text-xs font-bold tracking-widest uppercase">${data.tag}</span>
+                            <span class="text-slate-400 text-sm">${data.weekNum}</span>
+                        </div>
+                        <h3 class="text-2xl sm:text-3xl font-black text-slate-900 leading-tight">${data.title}</h3>
+                        <p class="text-slate-500 font-serif italic text-sm">"${data.eng}"</p>
+                    </div>
+                    <p class="text-slate-600 leading-relaxed font-light text-base sm:text-lg">
+                        ${data.desc}
+                    </p>
+                    <div class="bg-white/80 rounded-2xl p-4 sm:p-6 border border-alphaWarm-200/50 space-y-2">
+                        <h4 class="text-sm font-bold text-slate-800">🤔 本週熱門探討話題：</h4>
+                        <ul class="text-sm text-slate-600 space-y-1.5 list-disc list-inside">
+                            ${topicsHtml}
+                        </ul>
+                    </div>
+                `;
+                detailContainer.classList.remove('opacity-0', 'scale-95');
+                detailContainer.classList.add('opacity-100', 'scale-100');
+            }, 150);
+        }
+
+        // 互動測驗 (Quiz)
+        let userAnswers = {};
+
+        function nextStep(step, val) {
+            userAnswers[step] = val;
+            const currentStepEl = document.getElementById(`quiz-step-${step}`);
+            currentStepEl.classList.add('hidden');
+
+            if (step < 3) {
+                const nextStepEl = document.getElementById(`quiz-step-${step + 1}`);
+                nextStepEl.classList.remove('hidden');
+            } else {
+                showQuizResult();
+            }
+        }
+
+        function showQuizResult() {
+            const resultEl = document.getElementById('quiz-result');
+            const titleEl = document.getElementById('result-title');
+            const textEl = document.getElementById('result-text');
+
+            const ans1 = userAnswers[1];
+            const ans2 = userAnswers[2];
+            const ans3 = userAnswers[3];
+
+            let resultTitle = "";
+            let resultText = "";
+
+            if (ans1 === 'A' && ans2 === 'A') {
+                resultTitle = "靈魂深度探索者 🌟";
+                resultText = "你是一個非常有深度且樂於思考生命真諦的人！你不安於浮於表面的喧囂生活，更渴望與大自然、信仰以及內在靈性建立真實的連結。像你這樣充滿好奇心、熱愛客觀思辨的朋友，在啟發課程中绝对能找到極大的歸屬感與樂趣。我們非常期待能與你一起坐下來討論！";
+            } else if (ans2 === 'C') {
+                resultTitle = "真誠而謹慎的求真者 🛡️";
+                resultText = "你對於心靈與宗教話題抱持著非常健康且務實的警覺。你渴望尋求生命的溫暖，但非常反感說教和強迫推銷。這正是為什麽「啟發課程」是為你量身打造的——在這裡，你可以全然保持你的防備，大膽說出你的反對意見，我們保證絕無任何人對你強加觀點。你可以只當個自在的旁聽者！";
+            } else {
+                resultTitle = "理性又開放的生活漫步者 🍃";
+                resultText = "你對生活保持著一種平和、順其自然且開放的態度。你或許日子忙碌，但當有合適的時間和溫馨的環境，你也十分樂意聽聽人生的另一種可能，並多認識各領域的新朋友。啟發課程提供的是一種類似咖啡館聊天的安全社交體驗，這能為你的忙碌生活注入一絲溫馨、暖活的養分！";
+            }
+
+            titleEl.innerText = "你的探索潛能：" + resultTitle;
+            textEl.innerText = resultText;
+            resultEl.classList.remove('hidden');
+        }
+
+        function resetQuiz() {
+            userAnswers = {};
+            document.getElementById('quiz-result').classList.add('hidden');
+            document.getElementById('quiz-step-1').classList.remove('hidden');
+            document.getElementById('quiz-step-2').classList.add('hidden');
+            document.getElementById('quiz-step-3').classList.add('hidden');
+        }
+
+        // 常見問題 FAQ 收折
+        function toggleFAQ(num) {
+            const ans = document.getElementById(`faq-ans-${num}`);
+            const icon = document.getElementById(`faq-icon-${num}`);
+            const card = ans.parentElement;
+            const isHidden = ans.classList.contains('hidden');
+
+            if (isHidden) {
+                ans.classList.remove('hidden');
+                icon.classList.add('rotate-180');
+                card.classList.add('border-alphaRed-500/20', 'shadow-md');
+            } else {
+                ans.classList.add('hidden');
+                icon.classList.remove('rotate-180');
+                card.classList.remove('border-alphaRed-500/20', 'shadow-md');
+            }
+        }
+
+        // 表單提交處理：內建傳送到 Google 試算表的異步 Fetch 機制
+        async function handleFormSubmit(event) {
+            event.preventDefault();
+            
+            const submitBtn = document.getElementById('submit-btn');
+            const originalBtnText = submitBtn.innerHTML;
+            
+            // 取得表單欄位內容
+            const name = document.getElementById('name').value.trim();
+            const gender = document.getElementById('gender').value;
+            const phone = document.getElementById('phone').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const format = document.getElementById('format').value;
+            const time = document.getElementById('time').value;
+            const message = document.getElementById('message').value.trim();
+
+            // 防重複點擊，進入 Loading 狀態
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `
+                <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                正在傳送報名資料...
+            `;
+
+            // 設定狀態提示隱藏
+            document.getElementById('google-sheet-status').classList.add('hidden');
+
+            // 判斷是否已設定 Google Script URL
+            if (GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL.trim() !== '') {
+                try {
+                    // 使用 URLSearchParams 以 application/x-www-form-urlencoded 格式送出，最不易遇到跨網域 (CORS) 問題
+                    const formData = new URLSearchParams();
+                    formData.append('timestamp', new Date().toLocaleString('zh-TW'));
+                    formData.append('name', name);
+                    formData.append('gender', gender === 'male' ? '男' : (gender === 'female' ? '女' : '保留'));
+                    formData.append('phone', phone);
+                    formData.append('email', email);
+                    formData.append('format', format);
+                    formData.append('time', time);
+                    formData.append('message', message);
+
+                    const response = await fetch(GOOGLE_SCRIPT_URL, {
+                        method: 'POST',
+                        mode: 'no-cors', // 💡 no-cors 模式能確保跨域請求 100% 成功送出
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        },
+                        body: formData
+                    });
+
+                    // 因為是 no-cors 模式，response 類型為 opaque，無法讀取 status 屬於正常現象。
+                    // 只要沒有拋出 Error (Catch)，即代表請求已成功寄出。
+                    document.getElementById('google-sheet-status').classList.remove('hidden');
+                    document.getElementById('success-modal').classList.remove('hidden');
+
+                } catch (error) {
+                    console.error('Google Sheets Error:', error);
+                    // 顯示錯誤彈窗，不使用 alert()
+                    document.getElementById('error-message-text').innerText = error.message || '網路傳輸不穩定，請重新檢查後再送出。';
+                    document.getElementById('error-modal').classList.remove('hidden');
+                } finally {
+                    // 恢復按鈕狀態
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnText;
+                }
+            } else {
+                // 若沒有填寫 GOOGLE_SCRIPT_URL，則進行本地模擬
+                setTimeout(() => {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnText;
+                    document.getElementById('success-modal').classList.remove('hidden');
+                }, 1000);
+            }
+        }
+
+        function closeSuccessModal() {
+            document.getElementById('success-modal').classList.add('hidden');
+            document.getElementById('alpha-form').reset();
+        }
+
+        function closeErrorModal() {
+            document.getElementById('error-modal').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
+
+<!-- 
+💡 附錄：GOOGLE APPS SCRIPT 後端接收代碼 💡
+--------------------------------------------
+請將以下 JavaScript 代碼複製到 Google 試算表的「擴充功能 > Apps Script」中。
+並請看下方對話框的詳細 3 步驟設定指南！
+
+```javascript
+function doPost(e) {
+  try {
+    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+    
+    // 如果工作表是全新的，自動建立標題列
+    if (sheet.getLastRow() === 0) {
+      sheet.appendRow(["報名時間", "姓名/稱呼", "性別", "聯絡電話", "電子信箱", "聚會方式", "方便聯絡時間", "備註/期待"]);
+    }
+    
+    // 讀取前端傳過來的參數
+    var timestamp = e.parameter.timestamp || new Date().toLocaleString('zh-TW');
+    var name = e.parameter.name || "";
+    var gender = e.parameter.gender || "";
+    var phone = e.parameter.phone || "";
+    var email = e.parameter.email || "";
+    var format = e.parameter.format || "";
+    var time = e.parameter.time || "";
+    var message = e.parameter.message || "";
+    
+    // 將新報名寫入試算表下一行
+    sheet.appendRow([timestamp, name, gender, phone, email, format, time, message]);
+    
+    // 回傳成功狀態 (對應 no-cors 運作)
+    return ContentService.createTextOutput(JSON.stringify({result: "success"}))
+                         .setMimeType(ContentService.MimeType.JSON);
+                         
+  } catch(err) {
+    return ContentService.createTextOutput(JSON.stringify({result: "error", error: err.toString()}))
+                         .setMimeType(ContentService.MimeType.JSON);
+  }
+}
+```
+-->
